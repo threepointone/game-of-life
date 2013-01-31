@@ -7,7 +7,6 @@ function Grid(options) {
     this.grid = [];
     this.width = options.width || 20;
     this.height = options.height || 20;
-
 };
 
 Grid.prototype.at = function(x, y, live) {
@@ -21,9 +20,6 @@ Grid.prototype.at = function(x, y, live) {
         return this.grid[y][x] || false;
     }
     return false;
-
-
-
 };
 
 Grid.prototype.step = function() {
