@@ -10,13 +10,19 @@ function Grid(options) {
 
 };
 
-Grid.prototype.at = function(x, y, live){
-    if(typeof live === 'boolean'){
+Grid.prototype.at = function(x, y, live) {
+    if(typeof live === 'boolean') {
         this.grid[x] = this.grid[x] || [];
         this.grid[x][y] = live;
         return this;
     }
-    return (!this.grid[x])?false:(this.grid[x][y]||false);
+
+    if(this.grid[x]) {
+        return this.grid[x][y] || false;
+    }
+    return false;
+
+
 
 };
 
@@ -36,7 +42,7 @@ Grid.prototype.step = function() {
 
 Grid.prototype.rules = function(x, y) {
     // applies rules and sends back true or false on basis of live or dead
-    if(this.at(x,y) === true) { // live cell
+    if(this.at(x, y) === true) { // live cell
         switch(this.neighbors(x, y)) {
         case 0:
         case 1:
@@ -59,10 +65,22 @@ Grid.prototype.neighbors = function(x, y) {
     var ctr = 0;
     for(var i = x - 1; i < x + 2; i++) {
         for(var j = y - 1; j < y + 2; j++) {
-            if(i >= 0 && i < this.width && j >= 0 && j < this.height && !(x === i && y === j) && this.at(x, y)=== true) {
+            if((i >= 0) && (i < this.width) && (j >= 0) && (j < this.height) && (!( (x === i) && (y === j) )) && (this.at(i, j) === true)) {
                 ctr++;
             }
         }
     }
     return ctr;
 };
+
+Grid.prototype.str = function() {
+    var str = [];
+    for(var i = 0; i < this.width; i++) {
+        for(var j = 0; j < this.height; j++) {
+            str += (this.at(i, j) ? '.' : 'O');
+        }
+        str += '\n';
+    }
+    return str;
+
+}
