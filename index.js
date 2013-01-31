@@ -7,7 +7,7 @@ function Grid(options) {
     this.grid = [];
     this.width = options.width || 20;
     this.height = options.height || 20;
-};
+}
 
 Grid.prototype.at = function(x, y, live) {
     if(typeof live === 'boolean') {
@@ -34,6 +34,7 @@ Grid.prototype.step = function() {
         }
     }
     this.grid = _grid;
+    return this;
 };
 
 Grid.prototype.rules = function(x, y) {
@@ -61,7 +62,7 @@ Grid.prototype.neighbors = function(x, y) {
     var ctr = 0;
     for(var i = x - 1; i < x + 2; i++) {
         for(var j = y - 1; j < y + 2; j++) {
-            if((i >= 0) && (i < this.width) && (j >= 0) && (j < this.height) && (!( (x === i) && (y === j) )) && (this.at(i, j) === true)) {
+            if((i >= 0) && (i < this.width) && (j >= 0) && (j < this.height) && (!((x === i) && (y === j))) && (this.at(i, j) === true)) {
                 ctr++;
             }
         }
@@ -79,4 +80,4 @@ Grid.prototype.str = function() {
     }
     return str;
 
-}
+};
