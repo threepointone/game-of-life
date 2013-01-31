@@ -1,4 +1,4 @@
-var gol = require('./index.js')();
+var gol = require('./index.js')({width:100});
 
 // prepopulate some cells with live state
 for(var i = 0;i<50;i++){

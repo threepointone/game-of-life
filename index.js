@@ -12,13 +12,13 @@ function Grid(options) {
 
 Grid.prototype.at = function(x, y, live) {
     if(typeof live === 'boolean') {
-        this.grid[x] = this.grid[x] || [];
-        this.grid[x][y] = live;
+        this.grid[y] = this.grid[y] || [];
+        this.grid[y][x] = live;
         return this;
     }
 
-    if(this.grid[x]) {
-        return this.grid[x][y] || false;
+    if(this.grid[y]) {
+        return this.grid[y][x] || false;
     }
     return false;
 
@@ -32,8 +32,8 @@ Grid.prototype.step = function() {
         for(var j = this.height; j--;) {
             var state = this.rules(i, j);
             if(state) {
-                _grid[i] = _grid[i] || [];
-                _grid[i][j] = state;
+                _grid[j] = _grid[j] || [];
+                _grid[j][i] = state;
             }
         }
     }
@@ -75,8 +75,8 @@ Grid.prototype.neighbors = function(x, y) {
 
 Grid.prototype.str = function() {
     var str = [];
-    for(var i = 0; i < this.width; i++) {
-        for(var j = 0; j < this.height; j++) {
+    for(var j = 0; j < this.height; j++) {
+        for(var i = 0; i < this.width; i++) {
             str += (this.at(i, j) ? '.' : 'O');
         }
         str += '\n';
