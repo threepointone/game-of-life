@@ -1,0 +1,17 @@
+{
+  "name": "game-of-life",
+  "version": "0.0.0",
+  "description": "Game of Life",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "devDependencies":{
+    "mocha":"*",
+    "should":"*"
+    },
+  "repository": "",
+  "author": "Sunil Pai",
+  "license": "BSD",
+  "readmeFilename": "Readme.md"
+}

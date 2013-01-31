@@ -1,0 +1,14 @@
+{
+  "name": "game-of-life",
+  "repo": "threepointone/game-of-life",
+  "description": "generic GOL implementation",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+  },
+  "development": {},
+  "license": "MIT",
+  "scripts": [
+    "index.js"
+  ]
+}
