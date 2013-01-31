@@ -10,5 +10,5 @@ for(var i = 0;i<50;i++){
 setInterval(function(){
     gol.step();
     console.log(gol.str());
-},1000);
+},100);
 
