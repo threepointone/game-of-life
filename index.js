@@ -74,7 +74,7 @@ Grid.prototype.str = function() {
     var str = [];
     for(var j = 0; j < this.height; j++) {
         for(var i = 0; i < this.width; i++) {
-            str += (this.at(i, j) ? '.' : 'O');
+            str += (this.at(i, j) ? 'O' : '.');
         }
         str += '\n';
     }
