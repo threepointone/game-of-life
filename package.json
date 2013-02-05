@@ -4,7 +4,7 @@
   "description": "Game of Life",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": ""
   },
   "devDependencies":{
     "mocha":"*",
