@@ -5,6 +5,8 @@ function Grid(options) {
     // assuming 2 dimensional grid, standard rules
     if(!(this instanceof Grid)) return new Grid(options);
     this.grid = [];
+    this.added = [];
+    this.removed = [];
     this.width = options.width || 20;
     this.height = options.height || 20;
 }
@@ -12,6 +14,23 @@ function Grid(options) {
 Grid.prototype.at = function(x, y, live) {
     if(typeof live === 'boolean') {
         this.grid[y] = this.grid[y] || [];
+        if(live){
+            if(!this.grid[y][x]){
+                this.added.push({
+                    x:x,
+                    y:y
+                });
+            }
+
+        }
+        else{
+            if(this.grid[y][x]){
+                this.removed.push({
+                    x:x,
+                    y:y
+                });
+            }
+        }
         this.grid[y][x] = live;
         return this;
     }
@@ -24,16 +43,37 @@ Grid.prototype.at = function(x, y, live) {
 
 Grid.prototype.step = function() {
     var _grid = [];
+
+    var added = [];
+    var removed = [];
+
     for(var i = this.width; i--;) {
         for(var j = this.height; j--;) {
             var state = this.rules(i, j);
             if(state) {
                 _grid[j] = _grid[j] || [];
                 _grid[j][i] = state;
+
+                if(!this.grid[j] || (this.grid[j] && !this.grid[j][i]) ){
+                    added.push({
+                        x:i,
+                        y:j
+                    });
+                }
+            }
+            else{
+                if(this.grid[j] && this.grid[j][i]){
+                    removed.push({
+                        x: i,
+                        y: j
+                    });
+                }
             }
         }
     }
     this.grid = _grid;
+    this.added = added;
+    this.removed = removed;
     return this;
 };
 

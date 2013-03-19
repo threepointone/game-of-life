@@ -13,6 +13,7 @@ for(var i = 0; i < 200; i++) {
 setInterval(function() {
     grid.step();
     console.log(grid.str());
+    // console.log(grid.added, '\n', grid.removed)
 }, 100);
 
 // grid.at(x,y) will get you life/death at every cell. 
