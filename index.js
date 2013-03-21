@@ -21,12 +21,7 @@ Grid.prototype.at = function(x, y, live) {
                     x: x,
                     y: y
                 });
-            } else {
-                this.unchanged.push({
-                    x: x,
-                    y: y
-                });
-            }
+            } 
 
         } else {
             if (this.grid[y][x]) {
@@ -51,6 +46,7 @@ Grid.prototype.step = function() {
 
     var added = [];
     var removed = [];
+    var unchanged = [];
 
     for (var i = this.width; i--;) {
         for (var j = this.height; j--;) {
@@ -63,6 +59,12 @@ Grid.prototype.step = function() {
                     added.push({
                         x: i,
                         y: j
+                    });
+                }
+                else{
+                    unchanged.push({
+                        x:i,
+                        y:j
                     });
                 }
             } else {
@@ -78,6 +80,7 @@ Grid.prototype.step = function() {
     this.grid = _grid;
     this.added = added;
     this.removed = removed;
+    this.unchanged = unchanged;
     return this;
 };
 
